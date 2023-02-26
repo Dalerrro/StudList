@@ -1,0 +1,114 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:StudList.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
+        x:Class="StudList.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="StudList">
+	<Window.Styles>
+		<Style Selector="ComboBox.Combo1">
+			<Setter Property="Width" Value="180" />
+			<Setter Property="Height" Value="45" />
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="BorderBrush" Value="Black"/>
+		</Style>
+	</Window.Styles>
+	
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Grid ShowGridLines="False" ColumnDefinitions="*" RowDefinitions="*, *, *, *, *, *">
+		<Grid ShowGridLines="False" Grid.Row="0" ColumnDefinitions="*, *, *, *, *, *">
+			<TextBlock Grid.Column="0" Text="ФИО" TextAlignment="Center"/>
+			<TextBlock Grid.Column="1" Text="Физика" TextAlignment ="Center"/>
+			<TextBlock Grid.Column="2" Text="Математика" TextAlignment="Center"/>
+			<TextBlock Grid.Column="3" Text="Информатика" TextAlignment="Center"/>
+			<TextBlock Grid.Column="4" Text="Физра" TextAlignment="Center"/>
+			<TextBlock Grid.Column="5" Text="Average" TextAlignment="Center"/>
+		</Grid>
+		<ListBox Grid.Row="1" Items="{Binding Students}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid ColumnDefinitions="*, *, *, *, *, *">
+						<TextBlock Name="FIOTB" Grid.Column="0" Text="{Binding fio}" TextAlignment="Center"/>
+						<Rectangle Grid.Column="1" Fill="{Binding GetFizikaColor}" Name="ComboFizRec"/>
+						<ComboBox Grid.Column="1" SelectedIndex="{Binding MarkFiz}" Classes="Combo1" Name="ComboFiz">
+							<ComboBoxItem> 0</ComboBoxItem>
+							<ComboBoxItem> 1</ComboBoxItem>
+							<ComboBoxItem> 2</ComboBoxItem>
+						</ComboBox>
+						<Rectangle Grid.Column="2" Fill="{Binding GetMathColor}" Name="ComboMatRec"/>
+						<ComboBox Grid.Column="2" SelectedIndex="{Binding MarkMat}" Classes="Combo1" Name="ComboMat">
+							<ComboBoxItem> 0</ComboBoxItem>
+							<ComboBoxItem> 1</ComboBoxItem>
+							<ComboBoxItem> 2</ComboBoxItem>
+						</ComboBox>
+						<Rectangle Grid.Column="3" Fill="{Binding GetInformatickColor}" Name="ComboInfRec"/>
+						<ComboBox Grid.Column="3" SelectedIndex="{Binding MarkInf}" Classes="Combo1" Name="ComboInf">
+							<ComboBoxItem> 0</ComboBoxItem>
+							<ComboBoxItem> 1</ComboBoxItem>
+							<ComboBoxItem> 2</ComboBoxItem>
+						</ComboBox>
+						<Rectangle Grid.Column="4" Fill="{Binding GetFizraColor}" Name="ComboFizrRec"/>
+						<ComboBox Grid.Column="4" SelectedIndex="{Binding MarkFizr}" Classes="Combo1" Name="ComboFizr">
+							<ComboBoxItem> 0</ComboBoxItem>
+							<ComboBoxItem> 1</ComboBoxItem>
+							<ComboBoxItem> 2</ComboBoxItem>
+						</ComboBox>
+						<Rectangle Grid.Column="5" Fill="{Binding GetAverageColor}" Name="AverTBRec"/>
+						<TextBlock Grid.Column="5" Text="{Binding GetAverage}" TextAlignment="Center" Name="AverTB">
+						</TextBlock>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<Grid Grid.Row="2" ColumnDefinitions="*, *, *, *, *, *">
+			<TextBlock Grid.Column="0" Text="Все студенты" TextAlignment="Center"/>
+			<Rectangle Grid.Column="1" Fill="{Binding GetAverageColorFiz}" Name="TBRecAllAverFiz"/>
+			<TextBlock Grid.Column="1" Text="{Binding GetAverageFiz}" TextAlignment="Center" Name="TBAllAverFiz"/>
+			<Rectangle Grid.Column="2" Fill="{Binding GetAverageColorMat}" Name="TBRecAllAverMat"/>
+			<TextBlock Grid.Column="2" Text="{Binding GetAverageMat}" TextAlignment="Center" Name="TBAllAverMat"/>
+			<Rectangle Grid.Column="3" Fill="{Binding GetAverageColorInf}" Name="TBRecAllAverInf"/>
+			<TextBlock Grid.Column="3" Text="{Binding GetAverageInf}" TextAlignment="Center" Name="TBAllAverInf"/>
+			<Rectangle Grid.Column="4" Fill="{Binding GetAverageColorFizr}" Name="TBRecAllAverFizr"/>
+			<TextBlock Grid.Column="4" Text="{Binding GetAverageFizr}" TextAlignment="Center" Name="TBAllAverFizr"/>
+			<Rectangle Grid.Column="5" Fill="{Binding GetAverageAverageColor}" Name="TBRecAllAver"/>
+			<TextBlock Grid.Column="5" Text="{Binding GeTLeg}" TextAlignment="Center" Name="TBAllAver"/>
+		</Grid>
+		<Grid Grid.Row="3" ColumnDefinitions="*, *, *, *, *">
+			<TextBox Grid.Column="0" Text="{Binding GetName}" TextAlignment="Center" Name="InputTB"/>
+			<ComboBox Grid.Column="1" SelectedIndex="{Binding GetMarkFizika}" Classes="Combo1" Name="InputCBFiz">
+				<ComboBoxItem> 0</ComboBoxItem>
+				<ComboBoxItem> 1</ComboBoxItem>
+				<ComboBoxItem> 2</ComboBoxItem>
+			</ComboBox>
+			<ComboBox Grid.Column="2" SelectedIndex="{Binding GetMarkMath}" Classes="Combo1" Name="InputCBMat">
+				<ComboBoxItem> 0</ComboBoxItem>
+				<ComboBoxItem> 1</ComboBoxItem>
+				<ComboBoxItem> 2</ComboBoxItem>
+			</ComboBox>
+			<ComboBox Grid.Column="3" SelectedIndex="{Binding GetMarkInformatick}" Classes="Combo1" Name="InputCBInf">
+				<ComboBoxItem> 0</ComboBoxItem>
+				<ComboBoxItem> 1</ComboBoxItem>
+				<ComboBoxItem> 2</ComboBoxItem>
+			</ComboBox>
+			<ComboBox Grid.Column="4" SelectedIndex="{Binding GetMarkFizra}" Classes="Combo1" Name="InputCBFizr">
+				<ComboBoxItem> 0</ComboBoxItem>
+				<ComboBoxItem> 1</ComboBoxItem>
+				<ComboBoxItem> 2</ComboBoxItem>
+			</ComboBox>
+		</Grid>
+		<Grid Grid.Row="4" ColumnDefinitions="*, *">
+			<Button Grid.Column="0" Content="Добавить" Command="{Binding AddStudent}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Name="ButAdd"/>
+			<Button Grid.Column="1" Content="Удалить" Command="{Binding DeliteStudent}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" Name="ButDell"/>
+		</Grid>
+		<Grid Grid.Row="5" ColumnDefinitions="*, *">
+			<Button Grid.Column="0" Content="Сохранить" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" Command="{Binding SaveStudent}" Name="ButSave"/>
+			<Button Grid.Column="1" Content="Загрузить" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" Command="{Binding LoadStudent}" Name="ButLoad"/>
+		</Grid>
+	</Grid>
+
+</Window>
